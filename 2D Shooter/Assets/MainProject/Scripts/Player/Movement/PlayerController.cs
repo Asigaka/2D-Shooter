@@ -15,13 +15,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Компоненты")]
+    [SerializeField] private Joystick joystick;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
 
+    private bool _buttonMovementUI = true;
     private bool _isFacingRight = true;
     private bool _isGrounded;
     private float _localSpeed;
     private int _localJumpCount;
+
+    private float _horizontal;
+    private float _vertical;
 
     private void Start()
     {
@@ -29,19 +34,22 @@ public class PlayerController : MonoBehaviour
         _localJumpCount = jumpCount;
     }
 
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2(_localSpeed, rb.velocity.y);
-    }
-
     private void Update()
     {
         
     }
 
-    public void OnLeftMove() => Move(false);
+    private void FixedUpdate()
+    {
+        if (_buttonMovementUI)
+        {
+            rb.velocity = new Vector2(_localSpeed, rb.velocity.y);
+        }
+    }
 
-    public void OnRightMove() => Move(true);
+    public void OnLeftMove() => ButtonMove(false);
+
+    public void OnRightMove() => ButtonMove(true);
 
     public void OnPointerUp() => _localSpeed = 0;
 
@@ -62,7 +70,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
     }
 
-    private void Move(bool right)
+    private void ButtonMove(bool right)
     {
         if (right)
             _localSpeed = speed;
@@ -73,6 +81,16 @@ public class PlayerController : MonoBehaviour
             Flip();
         else if (_localSpeed < 0 && _isFacingRight)
             Flip();
+    }
+
+    private void JoystickMoveValues()
+    {
+        _horizontal = joystick.Horizontal * speed;
+    }
+
+    private void JoystickMove()
+    {
+
     }
 
     private void Flip()

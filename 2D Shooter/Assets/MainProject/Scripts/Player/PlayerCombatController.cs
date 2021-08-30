@@ -12,6 +12,8 @@ public class PlayerCombatController : MonoBehaviour
     private EnemyTarget _mainTarget;
     private bool _canRotate = false;
     private bool _canShoot = false;
+    private bool _targetAimMode = false;
+    private bool _defaultAimMode = true;
 
     public List<EnemyTarget> EnemyTargets { get => enemyTargets; set => enemyTargets = value; }
 
@@ -28,6 +30,11 @@ public class PlayerCombatController : MonoBehaviour
         {
             RotateWeaponToMainTarget();
         }
+    }
+
+    public void SwitchAimMode()
+    {
+
     }
 
     private EnemyTarget FindMainTarget()
