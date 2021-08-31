@@ -15,4 +15,5 @@ MonoBehaviour:
   nameWeapon: 
   damage: 0
   rateOfFire: 0
-  rotateSpeed: 100
+  rotateSpeed: 10
+  distance: 10
