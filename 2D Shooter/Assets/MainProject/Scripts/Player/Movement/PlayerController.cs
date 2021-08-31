@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Передвижение")]
     [SerializeField] private float speed = 4;
+    [SerializeField] private bool joystickMove = true;
 
     [Header("Прыжки")]
     [SerializeField] private int jumpCount = 2;
@@ -15,11 +16,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Компоненты")]
+    [SerializeField] private GameObject joystickMovementUI;
+    [SerializeField] private GameObject buttonsMovementUI;
     [SerializeField] private Joystick joystick;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
 
-    private bool _buttonMovementUI = true;
     private bool _isFacingRight = true;
     private bool _isGrounded;
     private float _localSpeed;
@@ -34,17 +36,19 @@ public class PlayerController : MonoBehaviour
         _localJumpCount = jumpCount;
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
-        if (_buttonMovementUI)
-        {
-            rb.velocity = new Vector2(_localSpeed, rb.velocity.y);
-        }
+        if (joystickMove)
+            JoystickMove();
+
+        rb.velocity = new Vector2(_localSpeed, rb.velocity.y);
+    }
+
+    public void SwitchMovement()
+    {
+        joystickMove = !joystickMove;
+        buttonsMovementUI.SetActive(!joystickMove);
+        joystickMovementUI.SetActive(joystickMove);
     }
 
     public void OnLeftMove() => ButtonMove(false);
@@ -72,25 +76,42 @@ public class PlayerController : MonoBehaviour
 
     private void ButtonMove(bool right)
     {
-        if (right)
-            _localSpeed = speed;
-        else
-            _localSpeed = -speed;
+        if (!joystickMove)
+        {
+            if (right)
+                _localSpeed = speed;
+            else
+                _localSpeed = -speed;
 
-        if (_localSpeed > 0 && !_isFacingRight)
-            Flip();
-        else if (_localSpeed < 0 && _isFacingRight)
-            Flip();
-    }
-
-    private void JoystickMoveValues()
-    {
-        _horizontal = joystick.Horizontal * speed;
+            if (_localSpeed > 0 && !_isFacingRight)
+                Flip();
+            else if (_localSpeed < 0 && _isFacingRight)
+                Flip();
+        }
     }
 
     private void JoystickMove()
     {
+        if (joystickMove)
+        {
+            if (joystick.Horizontal >= 0.2f)
+                _localSpeed = speed;
+            else if (joystick.Horizontal <= -0.2f)
+                _localSpeed = -speed;
+            else
+                _localSpeed = 0;
 
+            if (_localSpeed > 0 && !_isFacingRight)
+                Flip();
+            else if (_localSpeed < 0 && _isFacingRight)
+                Flip();
+
+            /*float vertical = joystick.Vertical;
+
+            if (vertical >= 0.5f)
+                Jump();
+            */
+        }
     }
 
     private void Flip()
