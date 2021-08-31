@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 113707767}
   - component: {fileID: 113707768}
   - component: {fileID: 113707769}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194424621}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 573678643}
   - component: {fileID: 573678646}
   - component: {fileID: 573678647}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1500,7 +1500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1042467473}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2979,7 +2979,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1896851985}
   - component: {fileID: 1896851986}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3173,7 +3173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1949094287}
   - component: {fileID: 1949094288}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3255,7 +3255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2000441688}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: PlayerGuns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
