@@ -77,13 +77,16 @@ public class PlayerCombatController : MonoBehaviour
         {
             if (_reloaded)
             {
-                RaycastHit2D hit = Physics2D.Raycast(currentWeapon.FirePoint.position, currentWeapon.FirePoint.right, currentWeapon.Info.Distance);
+                RaycastHit2D hit = Physics2D.Raycast(currentWeapon.FirePoint.position, currentWeapon.FirePoint.right, currentWeapon.Info.Distance, 7);
 
-                if (hit.collider.GetComponent<EnemyTarget>())
+                if (hit.collider != null)
                 {
-                    EnemyTarget target = hit.collider.GetComponent<EnemyTarget>();
+                    if (hit.collider.GetComponent<EnemyTarget>())
+                    {
+                        EnemyTarget target = hit.collider.GetComponent<EnemyTarget>();
 
-                    Debug.Log(hit.collider.name);
+                        Debug.Log(hit.collider.name);
+                    }
                 }
 
                 _reloaded = false;
